@@ -25,6 +25,7 @@ class Service
     }
     public function imageDestroy(CategoryImage $image)
     {
+        $this->serviceImage->destroy($image->url);
         $image->delete();
     }
 

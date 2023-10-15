@@ -14,7 +14,7 @@
                     <div class="card h-100">
                         <input type="hidden" name="images[]" value="{{$image->id}}">
                         <div class="d-flex justify-content-end">
-                            <i onclick="removeElement({{$image->id}})" class="bi bi-x-circle-fill"></i>
+                            <i onclick="removeElement({{$image->id}})" class="fas fa-close"></i>
                         </div>
                         <img src='{{asset('uploads/300_'.$image->url)}}' alt="Preview Image">
                     </div>
@@ -59,7 +59,7 @@
     }
     // Завантаження фотки в бд
     document.getElementById('image').addEventListener('change', async function () {
-        console.log('count images: ' + countImage);
+
         if (countImage < {{$countImage}}) {
             countImage++;
             const formData = new FormData();
@@ -98,11 +98,14 @@
         const innerDiv = document.createElement('div');
         innerDiv.className = 'd-flex justify-content-end';
 
-        const icon = document.createElement('i');
-        icon.className = 'bi bi-x-circle-fill';
-        icon.onclick = function () {
+        const forIconDiv = document.createElement('div');
+        forIconDiv.onclick = function () {
             removeElement(id);
         };
+
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-close';
+
         const imageElement = document.createElement('img');
         imageElement.src = '{{asset(('uploads/300_'))}}' + urlImage;
         imageElement.alt = 'Preview Image';
@@ -113,7 +116,8 @@
         inputHidden.value = id;
 
         // Добавьте элементы в соответствующие контейнеры
-        innerDiv.appendChild(icon);
+        forIconDiv.appendChild(icon);
+        innerDiv.appendChild(forIconDiv);
         customDiv.appendChild(inputHidden);
         customDiv.appendChild(innerDiv);
         customDiv.appendChild(imageElement);

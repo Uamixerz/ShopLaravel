@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('admin.index')
 @section('content')
     <form action="{{ route('product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -17,7 +17,7 @@
                 <option value="{{$category->id}}">{{$category->name}}</option>
             @endforeach
         </select>
-        @include('component.imageInput', ['countImage' => 6, 'postUrl'=>"/product/image"])
+        @include('component.imageInput', ['countImage' => 6, 'postUrl'=>"/admin/product/image"])
 
         <button type="submit" class="btn btn-warning">Редагувати</button>
     </form>

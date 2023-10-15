@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.index')
 @section('content')
     <form action="{{ route('category.update',$category->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -10,7 +10,7 @@
             <textarea name="description" type="text" class="form-control" id="description"
                       placeholder="description">{{$category->description}}</textarea>
         </div>
-        @include('component.imageInput', ['countImage' => 1, 'postUrl'=>"/category/image"])
+        @include('component.imageInput', ['countImage' => 1, 'postUrl'=>"/admin/category/image"])
 
         <button type="submit" class="btn btn-warning">Редагувати</button>
     </form>

@@ -6,12 +6,22 @@ use Illuminate\Support\Facades\Storage;
 
 class Service
 {
-    function store($file){
-        \Log::info('Початок контролер', ['uploaded_file' => $file]);
-        $filename = uniqid().'.'.$file->getClientOriginalExtension();
-        $sizes = [50, 150, 300, 600, 1200];
-        $dir = $_SERVER['DOCUMENT_ROOT'];
 
+    function destroy($filename){
+        $sizes = [50, 150, 300, 600, 1200];
+        $dir = public_path('uploads');
+        foreach ($sizes as $size) {
+            $file_destroy = $dir.DIRECTORY_SEPARATOR.$size."_".$filename;
+            if (is_file($file_destroy)) {
+                unlink($file_destroy);
+            }
+        }
+    }
+    function store($file){
+        $filename = uniqid().'.'.$file->getClientOriginalExtension();
+
+        $dir = $_SERVER['DOCUMENT_ROOT'];
+        $sizes = [50, 150, 300, 600, 1200];
         $this->createDirectory();
 
         foreach ($sizes as $size) {

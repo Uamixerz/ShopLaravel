@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('admin.index')
 @section('content')
 
         <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
@@ -24,7 +24,7 @@
                 @endforeach
 
             </select>
-            @include('component.imageInput', ['countImage' => 6, 'postUrl'=>"/product/image"])
+            @include('component.imageInput', ['countImage' => 6, 'postUrl'=>"/admin/product/image"])
             <button type="submit" class="btn btn-primary">Створити</button>
         </form>
 

@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -61,6 +62,10 @@
                     <a class="nav-link" href="{{route('product.index')}}">
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Продукти
+                    </a>
+                    <a class="nav-link" href="{{route('order.index')}}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Замовлення
                     </a>
                 </div>
             </div>

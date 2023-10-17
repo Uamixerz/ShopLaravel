@@ -3,7 +3,7 @@
     <form action="{{ route('category.update',$category->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('patch')
-        @include('component.inputAdmin', ['name' => 'name', 'type'=>"text", 'value'=>$category->name])
+        @include('component.inputAdmin', ['name' => 'name', 'type'=>"text", 'value'=>$category->name , 'labelInfo' => 'Назва'])
 
         <div class="mb-3 form-group">
             <label for="description" class="form-label">Опис</label>

@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -42,16 +43,7 @@
                     @endcan
                 </ul>
                 <ul class="d-flex navbar-nav  mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item">
-                        <form class="d-flex">
-                            <button class="btn btn-outline-dark" type="submit">
-                                <i class="bi-cart-fill me-1"></i>
-                                Cart
-                                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                            </button>
-
-                        </form>
-                    </li>
+                    @include('home.basket.basketModal')
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
@@ -67,13 +59,13 @@
                     @else
                         <li class="nav-item dropdown">
                             <a class="nav-link active dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}</a>
+                               data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->firstName }}</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Вийти
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -89,9 +81,13 @@
     </nav>
 
 
-    <main class="">
+    <main class="" style="min-height: 100vh">
         @yield('content')
     </main>
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+    </footer>
 </div>
 </body>
+
 </html>

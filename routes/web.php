@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -55,8 +56,22 @@ Route::group([
         Route::get('/image/{image}', [CategoryController::class, 'imageShow'])->name('category.image.show');
         Route::delete('/image/{image}', [CategoryController::class, 'imageDestroy'])->name('category.image.destroy');
     });
+    Route::group([
+        'prefix' => 'order',
+    ], function ($router) {
+        Route::get('/', [OrderController::class, 'index'])->name('order.index');
+    });
 });
 
+Route::group([
+    'prefix' => 'order',
+], function ($router) {
+
+    Route::post('/', [OrderController::class, 'store'])->name('order.store');
+    Route::post('/basket', [OrderController::class, 'store_basket'])->name('order.basket.store');
+    Route::get('/basket', [OrderController::class, 'get_basket'])->name('order.basket.index');
+
+});
 
 
 

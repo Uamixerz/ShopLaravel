@@ -2,7 +2,7 @@
 @section('content')
     <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @include('component.inputAdmin', ['name' => 'name', 'type'=>"text"])
+        @include('component.inputAdmin', ['name' => 'name', 'type'=>"text", 'labelInfo' => 'Назва'])
         <div class="mb-3 form-group">
             <label for="description" class="form-label">Опис</label>
             <textarea name="description" type="text" class="form-control" id="description" placeholder="description"></textarea>

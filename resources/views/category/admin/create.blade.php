@@ -1,11 +1,11 @@
 @extends('admin.index')
 @section('content')
-    <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('category.store') }}" class="d-flex flex-column justify-content-center" style="width: 700px; height: 80vh" method="POST" enctype="multipart/form-data">
         @csrf
+        <h1>Добавлення категорії</h1>
         @include('component.inputAdmin', ['name' => 'name', 'type'=>"text", 'labelInfo' => 'Назва'])
-        <div class="mb-3 form-group">
-            <label for="description" class="form-label">Опис</label>
-            <textarea name="description" type="text" class="form-control" id="description" placeholder="description"></textarea>
+        <div class="mb-0 mt-3 form-group">
+            <textarea name="description" type="text" class="form-control" id="description" placeholder="Опис"></textarea>
             @error('description')
             <p class="text-danger">{{ $message }}</p>
             @enderror

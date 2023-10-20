@@ -1,39 +1,46 @@
 <div class="col mb-5">
-    <div class="card h-100">
+    <div class="card bg-white h-100">
         <!-- Product image-->
-        <div id="carousel{{$product->id}}" class="carousel slide carousel-dark">
-            <div class="carousel-inner">
-                @foreach($product->images()->get() as $key => $image)
-                    <div class="carousel-item {{ $key===0 ?'active':''}}">
-                        <img src="{{asset('uploads/600_'.$image->url)}}" class="card-img-top" alt="...">
-                    </div>
-                @endforeach
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{$product->id}}" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carousel{{$product->id}}" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+        <div id="{{$name.$product->id}}" onmouseover='showSecondImage(this)' onmouseout='hideSecondImage(this)'
+             style="height: 223px">
+            @foreach($product->images()->get() as $key => $image)
+                <div class="{{ $key===0 ?'firstImage':'d-none secondImage'}}">
+                    <img src="{{asset('uploads/300_'.$image->url)}}"
+                         class="card-img-top" alt="...">
+                </div>
+            @endforeach
         </div>
         <!-- Product details-->
-        <div class="card-body p-4">
+        <div class="card-body p-4 pb-0">
             <div class="text-center">
                 <!-- Product name-->
-                <h5 class="fw-bolder">{{$product->name}}</h5>
-                <!-- Product price-->
-
-                <h6>{{$product->description}}</h6>
+                <form action="{{ route('product.show',$product->id) }}"   method="GET" enctype="multipart/form-data">
+                    @csrf
+                    <button class="btn ">
+                    <h5 class="fw-bolder">{{$product->name}}</h5>
+                    </button>
+                </form>
             </div>
         </div>
+        <div class="d-flex justify-content-center text-warning mb-2">
+            <div class="bi-star-fill"></div>
+            <div class="bi-star-fill"></div>
+            <div class="bi-star-fill"></div>
+            <div class="bi-star-fill"></div>
+            <div class="bi-star"></div>
+        </div>
+
         <!-- Product actions-->
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center">
-                <p class="text-bg-success">{{$product->price}} грн</p>
+        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent row">
+            <div class="text-start col-8 d-flex flex-column align-items-start col-lg-8">
+                <h6 class="text-muted text-decoration-line-through my-auto m-0 ps-1" style="font-weight: bold;">{{$product->price}} ₴</h6>
+                <h5 class="text-danger my-auto m-0 ps-1" style="font-weight: bold;">{{$product->price}} ₴</h5>
             </div>
-                <div class="text-center"><button onclick="addToCookieArray({{$product->id}})" class="btn btn-outline-success mt-auto" href="#">Купити</button></div>
+            <div class="text-center d-flex flex-column align-items-center col pe-0">
+                <button onclick="addToCookieArray({{$product->id}})" class="btn text-success mt-auto p-0" href="#">
+                    <i class="bi bi-cart3 p-0" style="font-size: 2rem;"></i>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -41,31 +48,23 @@
 <script>
 
 
-    function addToCookieArray(productId) {
-        let existingData = getCookieData('cart');
-        let dataArray = existingData ? JSON.parse(existingData) : [];
-        console.log('data arr',dataArray);
 
-        let found = false;
 
-        for (let i = 0; i < dataArray.length; i++) {
-            if (dataArray[i].id === productId) {
-                dataArray[i].count++;
-                found = true;
-                break;
-            }
+    function showSecondImage(el) {
+        let element = el.querySelector('.secondImage');
+        let element1 = el.querySelector('.firstImage');
+        if (element && element1) {
+            element.classList.remove("d-none");
+            element1.classList.add("d-none");
         }
-
-        if (!found) {
-            dataArray.push({ 'id': productId, 'count': 1 });
-        }
-
-        document.cookie = "cart=" + JSON.stringify(dataArray) + "; path=/";
-
-        UpdateCount(dataArray);
     }
 
-
-
-
+    function hideSecondImage(el) {
+        let element = el.querySelector('.secondImage');
+        let element1 = el.querySelector('.firstImage');
+        if (element && element1) {
+            element.classList.add("d-none");
+            element1.classList.remove("d-none");
+        }
+    }
 </script>

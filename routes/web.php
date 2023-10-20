@@ -2,6 +2,8 @@
 
 
 use App\Http\Controllers\Category\CategoryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeLabel\HomeLabelController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +34,6 @@ Route::group([
         Route::get('/', [ProductController::class, 'index'])->name('product.index');
         Route::get('/create', [ProductController::class, 'create'])->name('product.create');
         Route::post('/', [ProductController::class, 'store'])->name('product.store');
-        Route::get('/{product}', [ProductController::class, 'show'])->name('product.show');
         Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
         Route::patch('/{product}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
@@ -61,6 +62,17 @@ Route::group([
     ], function ($router) {
         Route::get('/', [OrderController::class, 'index'])->name('order.index');
     });
+    Route::group([
+        'prefix' => 'homeLabel',
+    ], function ($router) {
+        Route::get('/', [HomeLabelController::class, 'index'])->name('homeLabel.index');
+        Route::get('/edit', [HomeLabelController::class, 'edit'])->name('homeLabel.edit');
+        Route::get('/create', [HomeLabelController::class, 'create'])->name('homeLabel.create');
+        Route::post('/', [HomeLabelController::class, 'store'])->name('homeLabel.store');
+        Route::delete('/{label}', [HomeLabelController::class, 'destroy'])->name('homeLabel.destroy');
+        Route::get('/{label}/edit', [HomeLabelController::class, 'edit'])->name('homeLabel.edit');
+        Route::patch('/{label}', [HomeLabelController::class, 'update'])->name('homeLabel.update');
+    });
 });
 
 Route::group([
@@ -84,4 +96,9 @@ Route::group([
 ], function ($router) {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+});
+Route::group([
+    'prefix' => 'product',
+], function ($router) {
+    Route::get('/{product}', [ProductController::class, 'show'])->name('product.show');
 });

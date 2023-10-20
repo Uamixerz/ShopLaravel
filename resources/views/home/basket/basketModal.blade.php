@@ -1,8 +1,8 @@
-<li class="nav-item">
-    <button class="btn btn-outline-dark" type="submit" data-bs-toggle="modal" onclick="uploadBasket()"
+<li class="nav-item ">
+    <button class="btn btn-outline-dark text-white" type="submit" data-bs-toggle="modal" onclick="uploadBasket()"
             data-bs-target="#basketModal">
-        <i class="bi-cart-fill me-1"></i>
-        Корзина
+        <i class="bi-cart-fill  me-1" style="color: white"></i>
+        Кошик
         <span id="productCount" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
     </button>
 </li>
@@ -11,9 +11,9 @@
 <div class="modal fade" id="basketModal" tabindex="-1" aria-labelledby="basketModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="basketModalLabel"><i class="bi-cart-fill me-1"></i> Корзина</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-header bg-black">
+                <h1 class="modal-title fs-5" id="basketModalLabel"><i class="bi-cart-fill me-1"></i> Кошик</h1>
+                <button type="button" class="btn bi bi-x-lg text-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <table class="table">
@@ -176,5 +176,29 @@
             }
         }
         return null;
+    }
+
+    function addToCookieArray(productId) {
+        let existingData = getCookieData('cart');
+        let dataArray = existingData ? JSON.parse(existingData) : [];
+        console.log('data arr', dataArray);
+
+        let found = false;
+
+        for (let i = 0; i < dataArray.length; i++) {
+            if (dataArray[i].id === productId) {
+                dataArray[i].count++;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            dataArray.push({'id': productId, 'count': 1});
+        }
+
+        document.cookie = "cart=" + JSON.stringify(dataArray) + "; path=/";
+
+        UpdateCount(dataArray);
     }
 </script>

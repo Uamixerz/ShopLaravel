@@ -16,6 +16,10 @@ class ProductController extends BaseController
         $products = Product::all();
         return view('product.show', compact('products'));
     }
+    public function show(Product $product){
+        $products = Product::all();
+        return view('product.buy.buyPage', compact('product','products'));
+    }
     public function create(){
         $categories = Category::all();
         return view('product.admin.create', compact('categories'));

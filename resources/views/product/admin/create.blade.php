@@ -1,20 +1,19 @@
 @extends('admin.index')
 @section('content')
 
-        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('product.store') }}" class="d-flex flex-column justify-content-center" style="width: 700px; height: 80vh" method="POST" enctype="multipart/form-data">
             @csrf
-
-            @include('component.inputAdmin', ['name' => 'name', 'type'=>"text"])
-            <div class="mb-3 form-group">
-                <label for="description" class="form-label">Опис</label>
+            <h1>Добавлення продукту</h1>
+            @include('component.inputAdmin', ['name' => 'name', 'type'=>"text", 'labelInfo' => 'Назва'])
+            <div class="mb-3 mt-3 form-group">
                 <textarea name="description" type="text" class="form-control" id="description"
-                          placeholder="description"></textarea>
+                          placeholder="Опис"></textarea>
                 @error('description')
                 <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
-            @include('component.inputAdmin', ['name' => 'price', 'type'=>"number"])
-
+            @include('component.inputAdmin', ['name' => 'price', 'type'=>"number", 'labelInfo' => 'Ціна'])
+            <p class="mb-0 mt-2">Категорія:</p>
             <select name="category_id" class="form-select" aria-label="Default select example">
                 <option selected>Виберіть категорію продукта</option>
                 @foreach($categories as $category)

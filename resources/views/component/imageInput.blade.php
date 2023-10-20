@@ -1,5 +1,5 @@
 <div class="mb-3 form-group">
-    <label for="image" class="form-label">Зображення (Макс. кількість фото: {{$countImage}})</label>
+    <label for="image" class="form-label mb-0 mt-2">Зображення (Макс. кількість фото: {{$countImage}})</label>
     <input type="file" class="form-control" id="image" multiple>
     @error('images')
     <p class="text-danger">{{ $message }}</p>

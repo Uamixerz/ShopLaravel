@@ -1,23 +1,23 @@
 @extends('layouts.app')
 @section('content')
-    <header class="bg-dark py-5">
-        <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Shop in style</h1>
-                <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-            </div>
-        </div>
+    <header>
+        @include('home.header.header')
     </header>
-    <!-- Section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                @foreach($products as $product)
-                   @include('product.component.item', ['$product' => $product])
-                @endforeach
 
+    <!-- Section-->
+    <section class="">
+        @foreach($labels as $label)
+            <div class="container px-4 px-lg-5 mt-5">
+                <h1 class="pb-3">{{$label->name}}</h1>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+                    @foreach($label->products()->get() as $labelProduct)
+                            @include('product.component.item', ['product' => $labelProduct->product()->get()->first(), 'name' => $label->name])
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endforeach
+
+
     </section>
 
 @endsection

@@ -67,6 +67,10 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                         Замовлення
                     </a>
+                    <a class="nav-link" href="{{route('homeLabel.index')}}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Налаштування головної сторінки
+                    </a>
                 </div>
             </div>
         </nav>
@@ -74,9 +78,8 @@
 
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid px-4">
+            <div class="container-fluid px-4 d-flex justify-content-center">
                 @yield('content')
-
             </div>
         </main>
         <footer class="py-4 bg-light mt-auto">

@@ -46,7 +46,6 @@
                                             <p>{{$product_order->product()->get()[0]->name}}</p> ->
                                             кількість {{$product_order->count}}
                                         </div>
-
                                     </div>
                                 @endforeach
                             </td>

@@ -1,10 +1,10 @@
 <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-black">
                 <h1 class="modal-title fs-5" id="orderModalLabel"><i class="bi bi-bag-heart-fill"></i> Оформлення
                     замовлення</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn bi bi-x-lg text-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="ps-4 pe-4 pt-4">

@@ -20,17 +20,14 @@
 <body>
 <div id="app">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar py-3 navbar-expand-lg navbar-light bg-black text-white">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="{{route('home')}}">Shop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand text-white" href="{{route('home')}}"><h3>MyShop <i class="bi bi-shop ps-2"></i></h3> </a>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                        <a class="nav-link active dropdown-toggle text-white" id="navbarDropdown" href="#" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">Категорії</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @foreach($categories as $category)
@@ -39,7 +36,7 @@
                         </ul>
                     </li>
                     @can('view', auth()->user())
-                        <li class="nav-item"><a class="nav-link active" href="{{route('admin')}}">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="{{route('admin')}}">Admin</a></li>
                     @endcan
                 </ul>
                 <ul class="d-flex navbar-nav  mb-2 mb-lg-0 ms-lg-4">
@@ -47,20 +44,20 @@
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Вхід') }}</a>
+                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Вхід') }}</a>
                             </li>
                         @endif
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Реєстрація') }}</a>
+                                <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Реєстрація') }}</a>
                             </li>
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                            <a class="nav-link active dropdown-toggle text-white" id="navbarDropdown" href="#" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->firstName }}</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
